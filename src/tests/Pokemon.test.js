@@ -6,6 +6,7 @@ import renderWithRouter from './services/renderWithRouter';
 import App from '../App';
 
 describe('Requisito 06', () => {
+  const pokemonPikachu = '/pokemon/25';
   test('Teste se é renderizado um card com as informações de determinado Pokémon', () => {
     renderWithRouter(<App />);
 
@@ -31,7 +32,7 @@ describe('Requisito 06', () => {
     userEvent.click(linkDetails);
 
     const { pathname } = history.location;
-    expect(pathname).toBe('/pokemon/25');
+    expect(pathname).toBe(pokemonPikachu);
   });
 
   test('Teste se ao clicar no link de navegação do Pokémon, é feito o redirecionamento da aplicação para a página de detalhes de Pokémon', () => {
@@ -41,7 +42,7 @@ describe('Requisito 06', () => {
     expect(linkDetails).toBeVisible();
     userEvent.click(linkDetails);
     act(() => {
-      history.push('/pokemon/25');
+      history.push(pokemonPikachu);
     });
 
     const titleDetails = screen.getByRole('heading', { name: /Pikachu Details/i });
@@ -54,7 +55,7 @@ describe('Requisito 06', () => {
     const linkMoreDetails = screen.getByRole('link', { name: /More details/i });
     userEvent.click(linkMoreDetails);
     act(() => {
-      history.push('/pokemon/25');
+      history.push(pokemonPikachu);
     });
 
     const pokemonFavorite = screen.getByLabelText(/Pokémon favoritado/i);
